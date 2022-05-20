@@ -4,15 +4,24 @@
       <h1>BOOLFIX</h1>
     </div>
     <div class="mb-searchFilm">
-    <input type="text" placeholder="Inserisci il titolo del film">
-    <button>Search</button>
+    <input 
+    v-model="findShow"
+    @keyup.enter="$emit('showFunction',findShow)"
+    type="text" placeholder="Inserisci il titolo del film">
+    <button @click="$emit('showFunction',findShow)"
+    >Search</button>
     </div>
   </header>
 </template>
 
 <script>
 export default {
-  name: 'HeaderComp'
+  name: 'HeaderComp',
+  data() {
+    return {
+      findShow:''
+    }
+  },
 }
 </script>
 

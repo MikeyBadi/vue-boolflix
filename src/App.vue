@@ -1,7 +1,9 @@
 <template>
   <div class="mb-boolflix">
-    <HeaderComp/>
-    <MainComp/>
+    <HeaderComp
+    @showFunction="showFunction"
+    />
+    <MainComp :cards="showArr"/>
   </div>
 </template>
 
@@ -18,29 +20,40 @@ export default {
   },
   data() {
     return {
+      showInput:'',
       urlAPI:'https://api.themoviedb.org/3/search/movie',
       apiComp:{
         api_key:'9d9c00a5c5227c48a18b2cb3044f13c9',
         language:'it-IT',
-        query: 'avengers'
-      }
+        query: ''
+      },
+      showArr:[],
     }
   },
   methods: {
     getAPI(){
+      this.apiComp.query = this.showInput
+      console.log('xxxxxxxx',this.apiComp.query);
       axios.get(this.urlAPI,{
         params:this.apiComp
       })
       .then(re=>{
         console.log(re.data.results);
+        this.showArr = re.data.results
+        console.log('Array dei film',this.showArr);
       })
       .catch(error =>{
         console.log(error);
       })
+    },
+    showFunction(showValue){
+      this.showInput = showValue
+      this.getAPI()
+      console.log('value della searchbar',this.showInput);
     }
   },
   mounted(){
-    this.getAPI()
+    
   },
 }
 </script>
