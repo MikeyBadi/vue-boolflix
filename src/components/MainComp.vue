@@ -2,7 +2,13 @@
   <main>
     <div class="d-flex flex-wrap mb-fullCont">
     <!-- dare al contenitore di tvcomp le instruzioni per il wrapping -->
-      <tvComp
+      <filmComp
+        v-for="(card,index) in cards"
+        :key="`card-${index}`"
+        :card="card"
+      />
+
+      <openMainComp
         v-for="(card,index) in cards"
         :key="`card-${index}`"
         :card="card"
@@ -12,14 +18,16 @@
 </template>
 
 <script>
-import tvComp from './tvComp.vue'
+import filmComp from './filmComp.vue'
+import openMainComp from './openMainComp.vue'
 export default {
   name:'MainComp',
   props:{
     cards:Array
   },
   components:{
-    tvComp
+    filmComp,
+    openMainComp
   },
 }
 </script>

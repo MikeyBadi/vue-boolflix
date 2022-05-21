@@ -11,6 +11,7 @@
         <p><b>Original title: </b>{{card.original_title}}</p>
         <p><b>Lenguage: </b>{{card.original_language}}</p>
         <p><b>Vote: </b>{{card.vote_average}}</p>
+        <p><b>Overview: </b>{{card.overview}}</p>
       </div>
     </div>
 </template>

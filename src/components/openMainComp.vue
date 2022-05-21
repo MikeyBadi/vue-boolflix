@@ -1,15 +1,15 @@
 <template>
-<div class="mb-fullcard">
-  <cardCreation
-  :card="card"/>
-</div>
+  <div>
+    <cardCreation
+    :card="card"/>
+  </div>
 </template>
 
 <script>
 import cardCreation from './cardCreation.vue'
 export default {
-  name:'tvComp',
-  components:{
+  name:'openMainComp',
+  comments:{
     cardCreation
   },
   props:{
@@ -20,7 +20,7 @@ export default {
 
 <style lang="scss" scoped>
   .mb-fullcard{
-    flex-basis: 170px;
+    flex-basis: 210px;
     max-width: 170px;
     min-width: 170px;
     height: 210px;
