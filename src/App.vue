@@ -41,16 +41,24 @@ export default {
         console.log(re.data.results);
         this.showArr = re.data.results
         console.log('Array dei film',this.showArr);
+        // this.leftClass(this.showArr,7);
       })
       .catch(error =>{
         console.log(error);
       })
     },
     showFunction(showValue){
-      this.showInput = showValue
-      this.getAPI()
+      this.showInput = showValue;
+      this.getAPI();
+      
       console.log('value della searchbar',this.showInput);
-    }
+      console.log('aaaaaaasdad',this.showArr);
+    },
+    // leftClass(card, nth){
+    //   for(let i=0; i < card.length; i+=nth){
+    //     card.push(`"lastOnRow" : true`)
+    //   }
+    // }
   },
   mounted(){
     
@@ -62,8 +70,8 @@ export default {
   @import './assets/style/general';
 
   .mb-boolflix{
-    height: 100vh;
-    background-color: darkslategrey;
+    min-height: 100vh;
+    background-color: #141414;
   }
 
 </style>

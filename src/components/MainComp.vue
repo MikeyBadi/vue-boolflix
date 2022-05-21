@@ -1,10 +1,13 @@
 <template>
   <main>
-    <tvComp
-      v-for="(card,index) in cards"
-      :key="`card-${index}`"
-      :card="card"
+    <div class="d-flex flex-wrap mb-fullCont">
+    <!-- dare al contenitore di tvcomp le instruzioni per il wrapping -->
+      <tvComp
+        v-for="(card,index) in cards"
+        :key="`card-${index}`"
+        :card="card"
       />
+    </div>
   </main>
 </template>
 
@@ -22,7 +25,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  tvComp{
-   width: 400px;
+@import '../assets/style/utils';
+main{
+  width: 100%;
+  background-color: $primary-bg;
+
+  .mb-fullCont{
+    padding: 30px;
+    margin: 0px 60px;
+    padding-top: 100px;
   }
+}
 </style>

@@ -1,13 +1,16 @@
 <template>
     <div class="mb-card">
-      <div class="mb-imgCont">
+      <div class="mb-imgCont d-flex justify-content-center">
         <img :src="`https://image.tmdb.org/t/p/original${card.poster_path}`" :alt="`${card.title}`">
       </div>
       <div class="mb-infoCont">
-        <p>Title: {{card.title}}</p>
-        <p>Original title: {{card.original_title}}</p>
-        <p>Lenguage: {{card.original_language}}</p>
-        <p>Vote: {{card.vote_average}}</p>
+        <div class="mb-infoImg">
+          <img :src="`https://image.tmdb.org/t/p/original${card.poster_path}`" :alt="`${card.title}`">
+        </div>
+        <p><b>Title: </b>{{card.title}}</p>
+        <p><b>Original title: </b>{{card.original_title}}</p>
+        <p><b>Lenguage: </b>{{card.original_language}}</p>
+        <p><b>Vote: </b>{{card.vote_average}}</p>
       </div>
     </div>
 </template>
@@ -28,21 +31,53 @@ export default {
 
 <style lang="scss" scoped>
   .mb-card{
-    width: 150px;
+    width: 100%;
+    height: 210px;
+    position: relative;
+    border-radius: 5px;
+    // overflow: hidden;
 
     .mb-imgCont{
-      position: relative;
-        display: inline-block;
       img{
-        width: 150px;
-      }
-      .mb-infoCont{
-        position: absolute;
-        z-index: 999;
-        color: white;
-        background-color: rgba(0, 0, 0, 0.336);
-
+        display: block;
+        width: 100%;
+        height: 210px;
+        border-radius: 5px;
       }
     }
+      .mb-infoCont{
+        position: absolute;
+        top: 0;
+        right: -60px;
+        z-index: 999;
+        color: white;
+        background-color: black;
+        display: none;
+        transition: .8s ease;
+
+        width: 300px;
+        height: 200px;
+        border-radius: 5px;
+        padding: 5px;
+        overflow:scroll;
+        p{
+          margin-bottom: 7px;
+          font-size: 14px;
+        }
+        .mb-infoImg{
+          width: 100%;
+          height: 100px;
+          border-radius: 5px;
+          overflow: hidden;
+          img{
+            width: 100%;
+         }
+          
+        }
+      }
+  }
+  .mb-card:hover .mb-infoCont{
+    display: block;
+    transform: scale(1.1);
   }
 </style>

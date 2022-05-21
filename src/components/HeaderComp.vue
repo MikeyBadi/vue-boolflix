@@ -26,5 +26,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+@import '../assets/style/utils';
+header{
+  width: 100%;
+  height: 50px;
+  background-color: $primary-bg;
+  position: fixed;
+  z-index: 9999;
+}
 </style>

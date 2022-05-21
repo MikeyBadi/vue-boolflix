@@ -20,8 +20,14 @@ export default {
 
 <style lang="scss" scoped>
   .mb-fullcard{
-    width: 400px;
-    text-align: center;
-    display: inline-block;
+    flex-basis: 170px;
+    max-width: 170px;
+    min-width: 170px;
+    height: 210px;
+    // overflow: hidden;
+    // text-align: center;
+    // display: inline-block;
+    margin: 0 5px 30px;
+
   }
 </style>
