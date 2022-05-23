@@ -1,34 +1,46 @@
 <template>
     <div class="mb-card">
 
-        <div class="mb-imgCont d-flex justify-content-center">
-          <img v-if="cardTv.poster_path != null" :src="`https://image.tmdb.org/t/p/original${cardTv.poster_path}`" :alt="`${cardTv.title}`">
-          <img v-else src="../../assets/img/No-Image.svg.png" :alt="`${cardTv.title}`">
+      <div class="mb-imgCont d-flex justify-content-center">
+        <img v-if="cardTv.poster_path != null" :src="`https://image.tmdb.org/t/p/original${cardTv.poster_path}`" :alt="`${cardTv.name}`">
+        <img v-else src="../../assets/img/No-Image.svg.png" :alt="`${cardTv.name}`">
+      </div>
+      <div class="mb-infoCont">
+        <div class="mb-infoImg">
+          <img v-if="cardTv.backdrop_path != null" :src="`https://image.tmdb.org/t/p/original${cardTv.backdrop_path}`" :alt="`${cardTv.name}`">
+          <img v-else src="../../assets/img/No-Image.svg.png" :alt="`${cardTv.name}`">
         </div>
-        <div class="mb-infoCont">
-          <div class="mb-infoImg">
-            <img v-if="cardTv.backdrop_path != null" :src="`https://image.tmdb.org/t/p/original${cardTv.backdrop_path}`" :alt="`${cardTv.title}`">
-            <img v-else src="../../assets/img/No-Image.svg.png" :alt="`${cardTv.title}`">
-          </div>
-          <p><b>Vote: </b>{{cardTv.vote_average}}</p>
+        <p><b>Vote:</b>
+        {{cardTv.vote_average}}
+        <StarRating
+        :increment="0.5"
+        :rating="(cardTv.vote_average / 2)"
+        :read-only="true"
+        :star-size="14"
+        :show-rating="false"
+        :inline="true"
+        /></p>
 
-          <div>
-            <p v-if="cardTv.original_language === 'gb'"><b>Lenguage: </b><flag iso="gb"/> / <flag iso="us"/></p>
-            <p v-else><b>Lenguage: </b><flag :iso="cardTv.original_language"/></p>
-          </div>
-
-          <p><b>Title: </b>{{cardTv.title}}</p>
-          <p><b>Original title: </b>{{cardTv.original_title}}</p>
-          <p><b>Overview: </b>{{cardTv.overview}}</p>
+        <div>
+          <p v-if="cardTv.original_language === 'gb'"><b>Lenguage: </b><flag iso="gb"/> / <flag iso="us"/></p>
+          <p v-else><b>Lenguage: </b><flag :iso="cardTv.original_language"/></p>
         </div>
+
+        <p><b>Name: </b>{{cardTv.name}}</p>
+        <p><b>Original Name: </b>{{cardTv.original_name}}</p>
+        <p><b>Overview: </b>{{cardTv.overview}}</p>
+      </div>
 
     </div>
 </template>
 
 <script>
-
+import StarRating from 'vue-star-rating'
 export default {
   name:'cardCreationSeries',
+  components:{
+    StarRating
+  },
   props:{
     cardTv: Object
   },
@@ -81,6 +93,9 @@ export default {
         p{
           margin-bottom: 7px;
           font-size: 14px;
+          b{
+            vertical-align: bottom;
+          }
         }
         .mb-infoImg{
           width: 100%;

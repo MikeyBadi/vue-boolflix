@@ -1,34 +1,46 @@
 <template>
     <div class="mb-card">
 
-        <div class="mb-imgCont d-flex justify-content-center">
-          <img v-if="card.poster_path != null" :src="`https://image.tmdb.org/t/p/original${card.poster_path}`" :alt="`${card.title}`">
+      <div class="mb-imgCont d-flex justify-content-center">
+        <img v-if="card.poster_path != null" :src="`https://image.tmdb.org/t/p/original${card.poster_path}`" :alt="`${card.title}`">
+        <img v-else src="../../assets/img/No-Image.svg.png" :alt="`${card.title}`">
+      </div>
+      <div class="mb-infoCont">
+        <div class="mb-infoImg">
+          <img v-if="card.backdrop_path != null" :src="`https://image.tmdb.org/t/p/original${card.backdrop_path}`" :alt="`${card.title}`">
           <img v-else src="../../assets/img/No-Image.svg.png" :alt="`${card.title}`">
         </div>
-        <div class="mb-infoCont">
-          <div class="mb-infoImg">
-            <img v-if="card.backdrop_path != null" :src="`https://image.tmdb.org/t/p/original${card.backdrop_path}`" :alt="`${card.title}`">
-            <img v-else src="../../assets/img/No-Image.svg.png" :alt="`${card.title}`">
-          </div>
-          <p><b>Vote: </b>{{card.vote_average}}</p>
+        <p><b>Vote:</b>
+        {{card.vote_average}}
+        <StarRating
+        :increment="0.5"
+        :rating="(card.vote_average / 2)"
+        :read-only="true"
+        :star-size="14"
+        :show-rating="false"
+        :inline="true"
+        /></p>
 
-          <div>
-            <p v-if="card.original_language === 'gb'"><b>Lenguage: </b><flag iso="gb"/> / <flag iso="us"/></p>
-            <p v-else><b>Lenguage: </b><flag :iso="card.original_language"/></p>
-          </div>
-
-          <p><b>Title: </b>{{card.title}}</p>
-          <p><b>Original title: </b>{{card.original_title}}</p>
-          <p><b>Overview: </b>{{card.overview}}</p>
+        <div>
+          <p v-if="card.original_language === 'gb'"><b>Lenguage: </b><flag iso="gb"/> / <flag iso="us"/></p>
+          <p v-else><b>Lenguage: </b><flag :iso="card.original_language"/></p>
         </div>
+
+        <p><b>Title: </b>{{card.title}}</p>
+        <p><b>Original title: </b>{{card.original_title}}</p>
+        <p><b>Overview: </b>{{card.overview}}</p>
+      </div>
 
     </div>
 </template>
 
 <script>
-
+import StarRating from 'vue-star-rating'
 export default {
   name:'cardCreationFilm',
+  components:{
+    StarRating
+  },
   props:{
     card: Object,
   },

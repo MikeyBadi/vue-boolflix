@@ -28,6 +28,5 @@ export default {
     // text-align: center;
     // display: inline-block;
     margin: 0 5px 30px;
-
   }
 </style>

@@ -3,7 +3,9 @@
     <HeaderComp
     @showFunction="showFunction"
     />
-    <MainComp :cards="filmArr" :cardsTv="seriesArr"/>
+    <MainComp 
+    :cards="filmArr"
+    :cardsTv="seriesArr"/>
   </div>
 </template>
 
@@ -13,11 +15,12 @@ import MainComp from './components/MainComp.vue';
 import axios from 'axios';
 
 
+
 export default {
   name: 'App',
   components: {
     HeaderComp,
-    MainComp
+    MainComp,
   },
   data() {
     return {
@@ -75,6 +78,10 @@ export default {
             el.original_language = 'jp'
           } else if(el.original_language === 'ar'){
             el.original_language = 'sa'
+          }else if(el.original_language === 'ko'){
+            el.original_language = 'kr'
+          }else if(el.original_language === 'zh'){
+            el.original_language = 'cn'
           }
         })
       })
@@ -87,15 +94,17 @@ export default {
     showFunction(showValue){
       this.showInput = showValue;
       this.getAPI();
+      this.getAPItv();
       if(this.showInput === ''){
         this.filmArr = [];
         this.seriesArr = [];
         console.log(this.filmArr);
         console.log(this.seriesArr);
       }
-      this.getAPItv();
-      console.log('value della searchbar',this.showInput);
-      console.log('aaaaaaasdad',this.seriesArr,);
+      
+      console.log(this.filmArr);
+      console.log(this.seriesArr);
+      
     },
   },
   mounted(){
