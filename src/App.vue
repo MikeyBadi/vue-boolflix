@@ -12,6 +12,7 @@ import HeaderComp from './components/HeaderComp.vue';
 import MainComp from './components/MainComp.vue';
 import axios from 'axios';
 
+
 export default {
   name: 'App',
   components: {
@@ -57,7 +58,9 @@ export default {
     showFunction(showValue){
       this.showInput = showValue;
       this.getAPI();
-      
+      if(this.showValue === ''){
+        this.showArr = []
+      }
       console.log('value della searchbar',this.showInput);
       console.log('aaaaaaasdad',this.showArr);
     },

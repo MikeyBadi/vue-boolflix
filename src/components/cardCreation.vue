@@ -10,7 +10,8 @@
           <img v-else src="../assets/img/No-Image.svg.png" :alt="`${card.title}`">
         </div>
         <p><b>Vote: </b>{{card.vote_average}}</p>
-        <p><b>Lenguage: </b>{{card.original_language}}</p>
+        <p><b>Lenguage: </b><flag :iso="card.original_language"/></p>
+
         <p><b>Title: </b>{{card.title}}</p>
         <p><b>Original title: </b>{{card.original_title}}</p>
         <p><b>Overview: </b>{{card.overview}}</p>
@@ -19,6 +20,7 @@
 </template>
 
 <script>
+
 export default {
   name:'cardCreation',
     props:{
