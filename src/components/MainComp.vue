@@ -7,6 +7,11 @@
         :key="`card-${index}`"
         :card="card"
       />
+      <tvComp
+        v-for="(cardTv,index) in cardsTv"
+        :key="`cardTv-${index}`"
+        :cardTv="cardTv"
+      />
 
       <!-- <openMainComp
         v-for="(card,index) in cards"
@@ -18,15 +23,18 @@
 </template>
 
 <script>
-import filmComp from './filmComp.vue'
+import filmComp from './film/filmComp.vue'
+import tvComp from './series/tvComp.vue'
 // import openMainComp from './openMainComp.vue'
 export default {
   name:'MainComp',
   props:{
-    cards:Array
+    cards:Array,
+    cardsTv:Array
   },
   components:{
     filmComp,
+    tvComp,
     // openMainComp
   },
 }

@@ -1,34 +1,41 @@
 <template>
     <div class="mb-card">
-      <div class="mb-imgCont d-flex justify-content-center">
-        <img v-if="card.poster_path != null" :src="`https://image.tmdb.org/t/p/original${card.poster_path}`" :alt="`${card.title}`">
-        <img v-else src="../assets/img/No-Image.svg.png" :alt="`${card.title}`">
-      </div>
-      <div class="mb-infoCont">
-        <div class="mb-infoImg">
-          <img v-if="card.poster_path != null" :src="`https://image.tmdb.org/t/p/original${card.poster_path}`" :alt="`${card.title}`">
-          <img v-else src="../assets/img/No-Image.svg.png" :alt="`${card.title}`">
-        </div>
-        <p><b>Vote: </b>{{card.vote_average}}</p>
-        <p><b>Lenguage: </b><flag :iso="card.original_language"/></p>
 
-        <p><b>Title: </b>{{card.title}}</p>
-        <p><b>Original title: </b>{{card.original_title}}</p>
-        <p><b>Overview: </b>{{card.overview}}</p>
-      </div>
+        <div class="mb-imgCont d-flex justify-content-center">
+          <img v-if="card.poster_path != null" :src="`https://image.tmdb.org/t/p/original${card.poster_path}`" :alt="`${card.title}`">
+          <img v-else src="../../assets/img/No-Image.svg.png" :alt="`${card.title}`">
+        </div>
+        <div class="mb-infoCont">
+          <div class="mb-infoImg">
+            <img v-if="card.backdrop_path != null" :src="`https://image.tmdb.org/t/p/original${card.backdrop_path}`" :alt="`${card.title}`">
+            <img v-else src="../../assets/img/No-Image.svg.png" :alt="`${card.title}`">
+          </div>
+          <p><b>Vote: </b>{{card.vote_average}}</p>
+
+          <div>
+            <p v-if="card.original_language === 'gb'"><b>Lenguage: </b><flag iso="gb"/> / <flag iso="us"/></p>
+            <p v-else><b>Lenguage: </b><flag :iso="card.original_language"/></p>
+          </div>
+
+          <p><b>Title: </b>{{card.title}}</p>
+          <p><b>Original title: </b>{{card.original_title}}</p>
+          <p><b>Overview: </b>{{card.overview}}</p>
+        </div>
+
     </div>
 </template>
 
 <script>
 
 export default {
-  name:'cardCreation',
-    props:{
-    card: Object
+  name:'cardCreationFilm',
+  props:{
+    card: Object,
   },
   data() {
     return {
-      img:'image.tmdb.org/t/p/w500'
+      img:'image.tmdb.org/t/p/w500',
+      us_gb:'us gb'
     }
   },
 }
@@ -58,13 +65,19 @@ export default {
         color: white;
         background-color: black;
         display: none;
-        transition: .8s ease;
+        transition: 1s ease;
 
         width: 300px;
         height: 200px;
         border-radius: 5px;
         padding: 5px;
         overflow:scroll;
+        overflow-x: hidden;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        .mb-infoCont::-webkit-scrollbar{
+          display: none;
+        }
         p{
           margin-bottom: 7px;
           font-size: 14px;

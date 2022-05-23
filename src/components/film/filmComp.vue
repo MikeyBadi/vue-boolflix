@@ -1,16 +1,16 @@
 <template>
 <div class="mb-fullcard">
-  <cardCreation
+  <cardCreationFilm
   :card="card"/>
 </div>
 </template>
 
 <script>
-import cardCreation from './cardCreation.vue'
+import cardCreationFilm from './cardCreationFilm.vue'
 export default {
   name:'tvComp',
   components:{
-    cardCreation
+    cardCreationFilm
   },
   props:{
     card: Object

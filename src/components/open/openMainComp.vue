@@ -1,15 +1,15 @@
 <template>
-<div class="mb-fullcard">
-  <cardCreation
-  :card="card"/>
-</div>
+  <div>
+    <cardCreation
+    :card="card"/>
+  </div>
 </template>
 
 <script>
-import cardCreation from './cardCreation.vue'
+import cardCreation from '../cardCreation.vue'
 export default {
-  name:'tvComp',
-  components:{
+  name:'openMainComp',
+  comments:{
     cardCreation
   },
   props:{

@@ -1,19 +1,19 @@
 <template>
-  <div>
-    <cardCreation
-    :card="card"/>
-  </div>
+<div class="mb-fullcard">
+  <cardCreationSeries
+  :cardTv="cardTv"/>
+</div>
 </template>
 
 <script>
-import cardCreation from './cardCreation.vue'
+import cardCreationSeries from './cardCreationSeries.vue'
 export default {
-  name:'openMainComp',
-  comments:{
-    cardCreation
+  name:'tvComp',
+  components:{
+    cardCreationSeries
   },
   props:{
-    card: Object
+    cardTv: Object
   }
 }
 </script>

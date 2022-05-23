@@ -3,7 +3,7 @@
     <HeaderComp
     @showFunction="showFunction"
     />
-    <MainComp :cards="showArr"/>
+    <MainComp :cards="filmArr" :cardsTv="seriesArr"/>
   </div>
 </template>
 
@@ -23,15 +23,18 @@ export default {
     return {
       showInput:'',
       urlAPI:'https://api.themoviedb.org/3/search/movie',
+      urlAPItv:'https://api.themoviedb.org/3/search/tv',
       apiComp:{
         api_key:'9d9c00a5c5227c48a18b2cb3044f13c9',
         language:'it-IT',
         query: ''
       },
-      showArr:[],
+      filmArr:[],
+      seriesArr:[],
     }
   },
   methods: {
+    // API movie
     getAPI(){
       this.apiComp.query = this.showInput
       console.log('xxxxxxxx',this.apiComp.query);
@@ -40,14 +43,16 @@ export default {
       })
       .then(re=>{
         console.log(re.data.results);
-        this.showArr = re.data.results
-        console.log('Array dei film',this.showArr);
+        this.filmArr = re.data.results
+        console.log('Array dei film',this.filmArr);
 
-        this.showArr.forEach(el=>{
+        this.filmArr.forEach(el=>{
           if(el.original_language === 'en'){
             el.original_language = 'gb'
-          } else if(el.original_language === 'it'){
-            el.original_language = 'it'
+          } else if(el.original_language === 'ja'){
+            el.original_language = 'jp'
+          } else if(el.original_language === 'ar'){
+            el.original_language = 'sa'
           }
         })
       })
@@ -55,14 +60,42 @@ export default {
         console.log(error);
       })
     },
+    // API Tv
+    getAPItv(){
+      this.apiComp.query = this.showInput
+      axios.get(this.urlAPItv,{
+        params:this.apiComp
+      })
+      .then(re=>{
+        this.seriesArr=re.data.results
+                this.seriesArr.forEach(el=>{
+          if(el.original_language === 'en'){
+            el.original_language = 'gb'
+          } else if(el.original_language === 'ja'){
+            el.original_language = 'jp'
+          } else if(el.original_language === 'ar'){
+            el.original_language = 'sa'
+          }
+        })
+      })
+      .catch(error =>{
+        console.log(error);
+      })
+    },
+
+    // search function
     showFunction(showValue){
       this.showInput = showValue;
       this.getAPI();
-      if(this.showValue === ''){
-        this.showArr = []
+      if(this.showInput === ''){
+        this.filmArr = [];
+        this.seriesArr = [];
+        console.log(this.filmArr);
+        console.log(this.seriesArr);
       }
+      this.getAPItv();
       console.log('value della searchbar',this.showInput);
-      console.log('aaaaaaasdad',this.showArr);
+      console.log('aaaaaaasdad',this.seriesArr,);
     },
   },
   mounted(){
