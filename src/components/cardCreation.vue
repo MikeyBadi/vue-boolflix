@@ -1,16 +1,18 @@
 <template>
     <div class="mb-card">
       <div class="mb-imgCont d-flex justify-content-center">
-        <img :src="`https://image.tmdb.org/t/p/original${card.poster_path}`" :alt="`${card.title}`">
+        <img v-if="card.poster_path != null" :src="`https://image.tmdb.org/t/p/original${card.poster_path}`" :alt="`${card.title}`">
+        <img v-else src="../assets/img/No-Image.svg.png" :alt="`${card.title}`">
       </div>
       <div class="mb-infoCont">
         <div class="mb-infoImg">
-          <img :src="`https://image.tmdb.org/t/p/original${card.poster_path}`" :alt="`${card.title}`">
+          <img v-if="card.poster_path != null" :src="`https://image.tmdb.org/t/p/original${card.poster_path}`" :alt="`${card.title}`">
+          <img v-else src="../assets/img/No-Image.svg.png" :alt="`${card.title}`">
         </div>
+        <p><b>Vote: </b>{{card.vote_average}}</p>
+        <p><b>Lenguage: </b>{{card.original_language}}</p>
         <p><b>Title: </b>{{card.title}}</p>
         <p><b>Original title: </b>{{card.original_title}}</p>
-        <p><b>Lenguage: </b>{{card.original_language}}</p>
-        <p><b>Vote: </b>{{card.vote_average}}</p>
         <p><b>Overview: </b>{{card.overview}}</p>
       </div>
     </div>

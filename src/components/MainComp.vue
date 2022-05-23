@@ -8,18 +8,18 @@
         :card="card"
       />
 
-      <openMainComp
+      <!-- <openMainComp
         v-for="(card,index) in cards"
         :key="`card-${index}`"
         :card="card"
-      />
+      /> -->
     </div>
   </main>
 </template>
 
 <script>
 import filmComp from './filmComp.vue'
-import openMainComp from './openMainComp.vue'
+// import openMainComp from './openMainComp.vue'
 export default {
   name:'MainComp',
   props:{
@@ -27,7 +27,7 @@ export default {
   },
   components:{
     filmComp,
-    openMainComp
+    // openMainComp
   },
 }
 </script>

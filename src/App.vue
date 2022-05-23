@@ -41,7 +41,14 @@ export default {
         console.log(re.data.results);
         this.showArr = re.data.results
         console.log('Array dei film',this.showArr);
-        // this.leftClass(this.showArr,7);
+
+        this.showArr.forEach(el=>{
+          if(el.original_language === 'en'){
+            el.original_language = 'gb'
+          } else if(el.original_language === 'it'){
+            el.original_language = 'it'
+          }
+        })
       })
       .catch(error =>{
         console.log(error);
@@ -54,11 +61,6 @@ export default {
       console.log('value della searchbar',this.showInput);
       console.log('aaaaaaasdad',this.showArr);
     },
-    // leftClass(card, nth){
-    //   for(let i=0; i < card.length; i+=nth){
-    //     card.push(`"lastOnRow" : true`)
-    //   }
-    // }
   },
   mounted(){
     
