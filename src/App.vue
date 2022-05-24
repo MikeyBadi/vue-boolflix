@@ -5,7 +5,7 @@
       @showFunction="showFunction"
       />
       <div>
-        <div class="container-fluid d-flex justify-content-center flex-wrap mb-fullCont"
+        <div class="d-flex justify-content-center flex-wrap mb-fullCont"
         v-if="apiComp.query===''">
         <div class="jumbotron">
           <h1 v-if="openArr[counterImg].title">{{openArr[counterImg].title}}</h1>
@@ -229,7 +229,8 @@ export default {
 
   .jumbotron{
     img{
-      width: 100vw;
+      overflow-x: hidden;
+      width: 100%;
       margin-bottom: 30px;
       position: relative;
       mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1.0) 70%, transparent 100%);
@@ -241,6 +242,7 @@ export default {
       left: 0;
       z-index: 9;
       color: white;
+      margin: 30px;
     }
   }
 
