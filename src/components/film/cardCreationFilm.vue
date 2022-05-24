@@ -21,10 +21,8 @@
         :inline="true"
         /></p>
 
-        <div>
           <p v-if="card.original_language === 'gb'"><b>Lenguage: </b><flag iso="gb"/> / <flag iso="us"/></p>
           <p v-else><b>Lenguage: </b><flag :iso="card.original_language"/></p>
-        </div>
 
         <p><b>Title: </b>{{card.title}}</p>
         <p><b>Original title: </b>{{card.original_title}}</p>
@@ -71,18 +69,17 @@ export default {
     }
       .mb-infoCont{
         position: absolute;
-        top: 0;
-        right: -60px;
+        top: -30px;
+        right: -35px;
         z-index: 999;
         color: white;
         background-color: black;
         display: none;
         transition: 1s ease;
 
-        width: 300px;
-        height: 200px;
+        width: 240px;
+        height: 280px;
         border-radius: 5px;
-        padding: 5px;
         overflow:scroll;
         overflow-x: hidden;
         -ms-overflow-style: none;
@@ -93,10 +90,11 @@ export default {
         p{
           margin-bottom: 7px;
           font-size: 14px;
+          padding: 0 10px;
         }
         .mb-infoImg{
           width: 100%;
-          height: 100px;
+          height: 160px;
           border-radius: 5px;
           overflow: hidden;
           img{
@@ -108,6 +106,6 @@ export default {
   }
   .mb-card:hover .mb-infoCont{
     display: block;
-    transform: scale(1.1);
+    transform: scale(1.15);
   }
 </style>

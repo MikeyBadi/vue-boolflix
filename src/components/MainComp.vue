@@ -51,7 +51,7 @@ main{
 
   .mb-fullCont{
     padding-top: 100px;
-
+    padding-bottom: 30px;
   }
 }
 </style>

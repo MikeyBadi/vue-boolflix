@@ -2,33 +2,32 @@
     <div class="mb-card">
 
       <div class="mb-imgCont d-flex justify-content-center">
-        <img v-if="cardTv.poster_path != null" :src="`https://image.tmdb.org/t/p/original${cardTv.poster_path}`" :alt="`${cardTv.name}`">
-        <img v-else src="../../assets/img/No-Image.svg.png" :alt="`${cardTv.name}`">
+        <img v-if="cardOpen.poster_path != null" :src="`https://image.tmdb.org/t/p/original${cardOpen.poster_path}`" :alt="`${cardOpen.title}`">
+        <img v-else src="../../assets/img/No-Image.svg.png" :alt="`${cardOpen.title}`">
       </div>
       <div class="mb-infoCont">
         <div class="mb-infoImg">
-          <img v-if="cardTv.backdrop_path != null" :src="`https://image.tmdb.org/t/p/original${cardTv.backdrop_path}`" :alt="`${cardTv.name}`">
-          <img v-else src="../../assets/img/No-Image.svg.png" :alt="`${cardTv.name}`">
+          <img v-if="cardOpen.backdrop_path != null" :src="`https://image.tmdb.org/t/p/original${cardOpen.backdrop_path}`" :alt="`${cardOpen.title}`">
+          <img v-else src="../../assets/img/No-Image.svg.png" :alt="`${cardOpen.title}`">
         </div>
         <p><b>Vote:</b>
-        {{cardTv.vote_average}}
+        {{cardOpen.vote_average}}
         <StarRating
         :increment="0.5"
-        :rating="(cardTv.vote_average / 2)"
+        :rating="(cardOpen.vote_average / 2)"
         :read-only="true"
         :star-size="14"
         :show-rating="false"
         :inline="true"
         /></p>
 
-        <div>
-          <p v-if="cardTv.original_language === 'gb'"><b>Lenguage: </b><flag iso="gb"/> / <flag iso="us"/></p>
-          <p v-else><b>Lenguage: </b><flag :iso="cardTv.original_language"/></p>
-        </div>
+          <p v-if="cardOpen.original_language === 'en'"><b>Lenguage: </b><flag iso="gb"/> / <flag iso="us"/></p>
+          <p v-else><b>Lenguage: </b><flag :iso="cardOpen.original_language"/></p>
 
-        <p><b>Name: </b>{{cardTv.name}}</p>
-        <p><b>Original Name: </b>{{cardTv.original_name}}</p>
-        <p><b>Overview: </b>{{cardTv.overview}}</p>
+        <p v-if="cardOpen.title"><b>Title: </b>{{cardOpen.title}}</p>
+        <p v-else ><b>Title: </b>{{cardOpen.name}}</p>
+        <p><b>Original title: </b>{{cardOpen.original_title}}</p>
+        <p><b>Overview: </b>{{cardOpen.overview}}</p>
       </div>
 
     </div>
@@ -37,12 +36,12 @@
 <script>
 import StarRating from 'vue-star-rating'
 export default {
-  name:'cardCreationSeries',
+  name:'cardCreationOpen',
   components:{
     StarRating
   },
   props:{
-    cardTv: Object
+    cardOpen: Object,
   },
   data() {
     return {
@@ -70,15 +69,14 @@ export default {
       }
     }
       .mb-infoCont{
-        
         position: absolute;
         top: -30px;
         right: -35px;
-        z-index: 9;
+        z-index: 999;
         color: white;
         background-color: black;
         display: none;
-
+        transition: 1s ease;
 
         width: 240px;
         height: 280px;
@@ -87,7 +85,6 @@ export default {
         overflow-x: hidden;
         -ms-overflow-style: none;
         scrollbar-width: none;
-        transition: 10s ease-in;
         .mb-infoCont::-webkit-scrollbar{
           display: none;
         }
@@ -95,9 +92,6 @@ export default {
           margin-bottom: 7px;
           font-size: 14px;
           padding: 0 10px;
-          b{
-            vertical-align: bottom;
-          }
         }
         .mb-infoImg{
           width: 100%;
@@ -114,6 +108,5 @@ export default {
   .mb-card:hover .mb-infoCont{
     display: block;
     transform: scale(1.15);
-    
   }
 </style>

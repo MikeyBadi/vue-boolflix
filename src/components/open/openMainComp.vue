@@ -1,25 +1,26 @@
 <template>
-  <div>
-    <cardCreation
-    :card="card"/>
+  <div class="mb-fullcard">
+    <cardCreationOpen
+    :cardOpen="cardOpen"/>
   </div>
 </template>
 
 <script>
-import cardCreation from '../cardCreation.vue'
+import cardCreationOpen from './cardCreationOpen.vue'
 export default {
   name:'openMainComp',
-  comments:{
-    cardCreation
+  components:{
+    cardCreationOpen
   },
   props:{
-    card: Object
+    cardOpen: Object
   }
 }
 </script>
 
 <style lang="scss" scoped>
   .mb-fullcard{
+    color: white;
     flex-basis: 210px;
     max-width: 170px;
     min-width: 170px;
@@ -28,6 +29,5 @@ export default {
     // text-align: center;
     // display: inline-block;
     margin: 0 5px 30px;
-
   }
 </style>
